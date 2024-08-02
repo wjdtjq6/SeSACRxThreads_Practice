@@ -22,17 +22,12 @@ class PhoneViewController: UIViewController {
     let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = Color.white
-        
         configureLayout()
+        phoneTextField.keyboardType = .numberPad
         bind()
-//        nextButton.addTarget(self, action: #selector(nextButtonClicked), for: .touchUpInside)
     }
-    
-//    @objc func nextButtonClicked() {
-//        navigationController?.pushViewController(NicknameViewController(), animated: true)
-//    }
+
     func bind() {
         //1.
         let validInt = BehaviorSubject(value: "010")//<Int>(value: 010)
@@ -42,17 +37,10 @@ class PhoneViewController: UIViewController {
         //2.
         let validation = phoneTextField.rx.text.orEmpty
             .map { $0.count >= 10 }
-        
-        Observable.combineLatest(phoneTextField.rx.text.orEmpty) { text -> Int in
-                return Int(text) ?? 0
-        }
-        .map { $0.description }
-        .bind(to: <#T##String...##String#>)
         //3.
         validation
             .bind(to: nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
-        
         //4.
         nextButton.rx.tap
             .bind(with: self) { owner, _ in

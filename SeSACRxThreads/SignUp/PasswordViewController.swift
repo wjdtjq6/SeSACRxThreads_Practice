@@ -17,7 +17,7 @@ import RxCocoa
  5. 뷰 넘기기
  */
 class PasswordViewController: UIViewController {
-   
+    
     let passwordTextField = SignTextField(placeholderText: "비밀번호를 입력해주세요")
     let nextButton = PointButton(title: "다음")
     let descriptionLabel = UILabel()
@@ -27,17 +27,10 @@ class PasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = Color.white
-        
         configureLayout()
-         bind()
-//        nextButton.addTarget(self, action: #selector(nextButtonClicked), for: .touchUpInside)
+        bind()
     }
-    
-//    @objc func nextButtonClicked() {
-//        navigationController?.pushViewController(PhoneViewController(), animated: true)
-//    }
     func bind() {
         //1.
         let validation = passwordTextField.rx.text.orEmpty
@@ -83,5 +76,4 @@ class PasswordViewController: UIViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
     }
-
 }
