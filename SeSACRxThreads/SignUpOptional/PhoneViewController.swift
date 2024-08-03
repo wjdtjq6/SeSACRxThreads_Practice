@@ -39,7 +39,12 @@ class PhoneViewController: UIViewController {
             .map { $0.count >= 10 }
         //3.
         validation
-            .bind(to: nextButton.rx.isEnabled)
+            .bind(with: self, onNext: { owner, value in
+                owner.nextButton.isEnabled = value
+                let color: UIColor = value ? .systemBlue : .black
+                owner.nextButton.backgroundColor = color
+                
+            })
             .disposed(by: disposeBag)
         //4.
         nextButton.rx.tap

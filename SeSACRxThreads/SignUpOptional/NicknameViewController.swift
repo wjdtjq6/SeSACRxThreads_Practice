@@ -42,7 +42,10 @@ class NicknameViewController: UIViewController {
             .bind(with: self) { owner, value in
                 owner.nextButton.isEnabled = value
                 owner.descriptionLabel.isHidden = value
+                let color: UIColor = value ? .systemBlue : .black
+                owner.nextButton.backgroundColor = color
             }
+            .disposed(by: disposeBag)
         validText
             .bind(to: descriptionLabel.rx.text)
             .disposed(by: disposeBag)
