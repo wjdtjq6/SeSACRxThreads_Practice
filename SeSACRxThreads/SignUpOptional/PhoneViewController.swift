@@ -30,7 +30,7 @@ class PhoneViewController: UIViewController {
 
     func bind() {
         //1.
-        let validInt = BehaviorSubject(value: "010")//<Int>(value: 010)
+        let validInt = BehaviorSubject(value: "010")
         validInt
             .bind(to: phoneTextField.rx.text)
             .disposed(by: disposeBag)
