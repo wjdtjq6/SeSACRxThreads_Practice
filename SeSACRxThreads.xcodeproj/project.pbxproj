@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		039649BA2C5F29CE00799E4D /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 039649B92C5F29CE00799E4D /* Then */; };
+		039649BC2C5F492600799E4D /* ShoppingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039649BB2C5F492600799E4D /* ShoppingTableViewCell.swift */; };
+		039F937E2C5E680900181C6C /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039F937D2C5E680900181C6C /* ShoppingViewController.swift */; };
 		041280242AEF9BAB00972552 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041280232AEF9BAB00972552 /* AppDelegate.swift */; };
 		041280262AEF9BAB00972552 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041280252AEF9BAB00972552 /* SceneDelegate.swift */; };
 		041280282AEF9BAB00972552 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041280272AEF9BAB00972552 /* ViewController.swift */; };
@@ -51,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		039649BB2C5F492600799E4D /* ShoppingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingTableViewCell.swift; sourceTree = "<group>"; };
+		039F937D2C5E680900181C6C /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
 		041280202AEF9BAB00972552 /* SeSACRxThreads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACRxThreads.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		041280232AEF9BAB00972552 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		041280252AEF9BAB00972552 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +91,7 @@
 				041280602AEFA0AC00972552 /* SnapKit in Frameworks */,
 				0412805D2AEFA09E00972552 /* RxSwift in Frameworks */,
 				0412805B2AEFA09E00972552 /* RxCocoa in Frameworks */,
+				039649BA2C5F29CE00799E4D /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +112,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		039F937C2C5E67FA00181C6C /* Shopping */ = {
+			isa = PBXGroup;
+			children = (
+				039F937D2C5E680900181C6C /* ShoppingViewController.swift */,
+				039649BB2C5F492600799E4D /* ShoppingTableViewCell.swift */,
+			);
+			path = Shopping;
+			sourceTree = "<group>";
+		};
 		041280172AEF9BAB00972552 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +144,7 @@
 		041280222AEF9BAB00972552 /* SeSACRxThreads */ = {
 			isa = PBXGroup;
 			children = (
+				039F937C2C5E67FA00181C6C /* Shopping */,
 				041280532AEF9C1F00972552 /* SignUp */,
 				041280542AEF9C2600972552 /* SignIn */,
 				0412806D2AEFAD0F00972552 /* SignUpOptional */,
@@ -229,6 +245,7 @@
 				0412805A2AEFA09E00972552 /* RxCocoa */,
 				0412805C2AEFA09E00972552 /* RxSwift */,
 				0412805F2AEFA0AC00972552 /* SnapKit */,
+				039649B92C5F29CE00799E4D /* Then */,
 			);
 			productName = SeSACRxThreads;
 			productReference = 041280202AEF9BAB00972552 /* SeSACRxThreads.app */;
@@ -305,6 +322,7 @@
 			packageReferences = (
 				041280592AEFA09D00972552 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				0412805E2AEFA0AC00972552 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				039F937F2C5E6A1A00181C6C /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			productRefGroup = 041280212AEF9BAB00972552 /* Products */;
 			projectDirPath = "";
@@ -354,12 +372,14 @@
 				0412806C2AEFABFE00972552 /* PasswordViewController.swift in Sources */,
 				041280562AEFA04800972552 /* SignInViewController.swift in Sources */,
 				041280282AEF9BAB00972552 /* ViewController.swift in Sources */,
+				039F937E2C5E680900181C6C /* ShoppingViewController.swift in Sources */,
 				041280632AEFA0CE00972552 /* PointButton.swift in Sources */,
 				04F6DC022C5B0D8200667F4D /* DetailViewController.swift in Sources */,
 				041280242AEF9BAB00972552 /* AppDelegate.swift in Sources */,
 				04F6DBFE2C5B0C0300667F4D /* SearchViewController.swift in Sources */,
 				04F6DC002C5B0C2200667F4D /* SearchTableViewCell.swift in Sources */,
 				041280732AEFAD4B00972552 /* NicknameViewController.swift in Sources */,
+				039649BC2C5F492600799E4D /* ShoppingTableViewCell.swift in Sources */,
 				0412806A2AEFA91E00972552 /* SignUpViewController.swift in Sources */,
 				041280712AEFAD3D00972552 /* PhoneViewController.swift in Sources */,
 				041280262AEF9BAB00972552 /* SceneDelegate.swift in Sources */,
@@ -710,6 +730,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		039F937F2C5E6A1A00181C6C /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		041280592AEFA09D00972552 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -729,6 +757,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		039649B92C5F29CE00799E4D /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 039F937F2C5E6A1A00181C6C /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
 		0412805A2AEFA09E00972552 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 041280592AEFA09D00972552 /* XCRemoteSwiftPackageReference "RxSwift" */;
