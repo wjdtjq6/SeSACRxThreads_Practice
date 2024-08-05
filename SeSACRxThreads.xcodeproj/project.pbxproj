@@ -37,6 +37,9 @@
 		BF86A6842C60CA7A00813C36 /* PhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6832C60CA7A00813C36 /* PhoneViewModel.swift */; };
 		BF86A6862C60E34400813C36 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6852C60E34400813C36 /* NicknameViewModel.swift */; };
 		BF86A6882C60EADA00813C36 /* BirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6872C60EADA00813C36 /* BirthdayViewModel.swift */; };
+		BF86A68A2C612C8A00813C36 /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6892C612C8A00813C36 /* PasswordViewModel.swift */; };
+		BF86A68C2C612F3E00813C36 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A68B2C612F3E00813C36 /* SignUpViewModel.swift */; };
+		BF86A68E2C61337A00813C36 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A68D2C61337A00813C36 /* SearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +90,9 @@
 		BF86A6832C60CA7A00813C36 /* PhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewModel.swift; sourceTree = "<group>"; };
 		BF86A6852C60E34400813C36 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		BF86A6872C60EADA00813C36 /* BirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewModel.swift; sourceTree = "<group>"; };
+		BF86A6892C612C8A00813C36 /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
+		BF86A68B2C612F3E00813C36 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		BF86A68D2C61337A00813C36 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,7 +194,9 @@
 			isa = PBXGroup;
 			children = (
 				041280692AEFA91E00972552 /* SignUpViewController.swift */,
+				BF86A68B2C612F3E00813C36 /* SignUpViewModel.swift */,
 				0412806B2AEFABFE00972552 /* PasswordViewController.swift */,
+				BF86A6892C612C8A00813C36 /* PasswordViewModel.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -215,11 +223,11 @@
 			isa = PBXGroup;
 			children = (
 				0412806E2AEFAD2D00972552 /* BirthdayViewController.swift */,
+				BF86A6872C60EADA00813C36 /* BirthdayViewModel.swift */,
 				041280702AEFAD3D00972552 /* PhoneViewController.swift */,
 				BF86A6832C60CA7A00813C36 /* PhoneViewModel.swift */,
 				041280722AEFAD4B00972552 /* NicknameViewController.swift */,
 				BF86A6852C60E34400813C36 /* NicknameViewModel.swift */,
-				BF86A6872C60EADA00813C36 /* BirthdayViewModel.swift */,
 			);
 			path = SignUpOptional;
 			sourceTree = "<group>";
@@ -230,6 +238,7 @@
 				04F6DBFD2C5B0C0300667F4D /* SearchViewController.swift */,
 				04F6DBFF2C5B0C2200667F4D /* SearchTableViewCell.swift */,
 				04F6DC012C5B0D8200667F4D /* DetailViewController.swift */,
+				BF86A68D2C61337A00813C36 /* SearchViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -388,14 +397,17 @@
 				041280242AEF9BAB00972552 /* AppDelegate.swift in Sources */,
 				04F6DBFE2C5B0C0300667F4D /* SearchViewController.swift in Sources */,
 				BF86A6882C60EADA00813C36 /* BirthdayViewModel.swift in Sources */,
+				BF86A68C2C612F3E00813C36 /* SignUpViewModel.swift in Sources */,
 				BF86A6862C60E34400813C36 /* NicknameViewModel.swift in Sources */,
 				04F6DC002C5B0C2200667F4D /* SearchTableViewCell.swift in Sources */,
 				041280732AEFAD4B00972552 /* NicknameViewController.swift in Sources */,
 				039649BC2C5F492600799E4D /* ShoppingTableViewCell.swift in Sources */,
+				BF86A68E2C61337A00813C36 /* SearchViewModel.swift in Sources */,
 				0412806A2AEFA91E00972552 /* SignUpViewController.swift in Sources */,
 				041280712AEFAD3D00972552 /* PhoneViewController.swift in Sources */,
 				041280262AEF9BAB00972552 /* SceneDelegate.swift in Sources */,
 				041280582AEFA05300972552 /* SignInViewModel.swift in Sources */,
+				BF86A68A2C612C8A00813C36 /* PasswordViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

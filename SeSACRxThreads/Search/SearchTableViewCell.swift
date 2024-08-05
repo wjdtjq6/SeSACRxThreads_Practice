@@ -13,7 +13,12 @@ import RxCocoa
 final class SearchTableViewCell: UITableViewCell {
     
     static let identifier = "SearchTableViewCell"
+    var disposeBag = DisposeBag()
     
+    override func prepareForReuse() {
+        //구독 중첩 처리
+        disposeBag = DisposeBag() // 리소스 정리를 해주어야 구독이 누적되지 않음 !!
+    }
     let appNameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18, weight: .bold)

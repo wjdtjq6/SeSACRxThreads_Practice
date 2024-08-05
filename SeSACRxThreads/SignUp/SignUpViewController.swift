@@ -22,7 +22,7 @@ class SignUpViewController: UIViewController {
     let validationButton = UIButton()
     let nextButton = PointButton(title: "다음")
     let disposeBag = DisposeBag()
-        
+    let viewModel = SignUpViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,14 +34,10 @@ class SignUpViewController: UIViewController {
         bind()
     }
     func bind() {
-        //1.
-        let validation = emailTextField.rx.text.orEmpty
-            .map { text in
-                //!text.filter({ $0 == "@" }).isEmpty && text.contains(".com")
-                text.contains("@") && text.contains(".com")
-            }
+        let input = SignUpViewModel.Input.init(text: emailTextField.rx.text, validationTap: validationButton.rx.tap, nextTap: nextButton.rx.tap)
+        let output = viewModel.transform(input: input)
         //2.
-        validation
+        output.validation//validation
             .bind(with: self) { owner, value in
                 owner.validationButton.isEnabled = value
                 let bgColor: UIColor = value ? .systemBlue : .clear
@@ -51,19 +47,19 @@ class SignUpViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         //3.
-        validationButton.rx.tap
+        output.validationTap//validationButton.rx.tap//input,output
             .bind { _ in
                 self.showAlert()
             }
             .disposed(by: disposeBag)
         //4.
-        nextButton.rx.tap
+        output.nextTap//nextButton.rx.tap//input,output
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(PasswordViewController(), animated: true)
             }
             .disposed(by: disposeBag)
         //5.
-        validation//emailTextField.rx.text.changed
+        output.validation//validation//output
             .bind(with: self) { owner, _ in
                 owner.nextButton.isEnabled = false
                 owner.nextButton.backgroundColor = .black
