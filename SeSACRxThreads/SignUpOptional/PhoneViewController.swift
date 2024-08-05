@@ -20,6 +20,7 @@ class PhoneViewController: UIViewController {
     let phoneTextField = SignTextField(placeholderText: "연락처를 입력해주세요")
     let nextButton = PointButton(title: "다음")
     let disposeBag = DisposeBag()
+    let viewModel = PhoneViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Color.white
@@ -29,16 +30,20 @@ class PhoneViewController: UIViewController {
     }
 
     func bind() {
+        let input = PhoneViewModel.Input(text: phoneTextField.rx.text, tap: nextButton.rx.tap)
+        let output = viewModel.transform(input: input)
+        
         //1.
-        let validInt = BehaviorSubject(value: "010")
-        validInt
+        //let validInt = BehaviorSubject(value: "010")
+        //validInt
+        output.validInt
             .bind(to: phoneTextField.rx.text)
             .disposed(by: disposeBag)
         //2.
-        let validation = phoneTextField.rx.text.orEmpty
-            .map { $0.count >= 10 }
+       /*let validation = phoneTextField.rx.text.orEmpty//input
+            .map { $0.count >= 10 }*/
         //3.
-        validation
+        output.validation
             .bind(with: self, onNext: { owner, value in
                 owner.nextButton.isEnabled = value
                 let color: UIColor = value ? .systemBlue : .black
@@ -47,7 +52,7 @@ class PhoneViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         //4.
-        nextButton.rx.tap
+        output.tap//nextButton.rx.tap//input,output
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(NicknameViewController(), animated: true)
             }

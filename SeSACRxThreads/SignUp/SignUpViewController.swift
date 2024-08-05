@@ -37,7 +37,8 @@ class SignUpViewController: UIViewController {
         //1.
         let validation = emailTextField.rx.text.orEmpty
             .map { text in
-                !text.filter({ $0 == "@" }).isEmpty && text.contains(".com")
+                //!text.filter({ $0 == "@" }).isEmpty && text.contains(".com")
+                text.contains("@") && text.contains(".com")
             }
         //2.
         validation
@@ -62,7 +63,7 @@ class SignUpViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         //5.
-        emailTextField.rx.text.changed
+        validation//emailTextField.rx.text.changed
             .bind(with: self) { owner, _ in
                 owner.nextButton.isEnabled = false
                 owner.nextButton.backgroundColor = .black

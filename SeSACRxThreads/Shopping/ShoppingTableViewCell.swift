@@ -16,15 +16,11 @@ class ShoppingTableViewCell: UITableViewCell {
         $0.backgroundColor = .systemGray6
     }
     var leftButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
-        $0.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
         $0.tintColor = .black
     }
     var title = UILabel().then { _ in
     }
     var rightButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "star"), for: .normal)
-        $0.setImage(UIImage(systemName: "star.fill"), for: .selected)
         $0.tintColor = .black
     }
     var disposeBag = DisposeBag()
@@ -63,7 +59,7 @@ class ShoppingTableViewCell: UITableViewCell {
         uiView.backgroundColor = .systemGray6
         uiView.layer.cornerRadius = 10
     }
-    override func prepareForReuse() {
+    override func prepareForReuse() {//구독 중첩 확인
             super.prepareForReuse()
             disposeBag = DisposeBag() // 셀 재사용 시 기존 disposeBag 초기화
         }

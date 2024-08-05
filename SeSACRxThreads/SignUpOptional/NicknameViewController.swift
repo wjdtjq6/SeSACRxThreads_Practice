@@ -15,9 +15,9 @@ class NicknameViewController: UIViewController {
     let nicknameTextField = SignTextField(placeholderText: "닉네임을 입력해주세요")
     let nextButton = PointButton(title: "다음")
     let descriptionLabel = UILabel()
-    let validText = Observable.just("특수문자(`,~,$,^,+,=,|),숫자,공백을 제외하고 6자 이하로 입력해주세요")
+    //let validText = Observable.just("특수문자(`,~,$,^,+,=,|),숫자,공백을 제외하고 6자 이하로 입력해주세요")
     let disposeBag = DisposeBag()
-    
+    let viewModel = NicknameViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,15 +30,17 @@ class NicknameViewController: UIViewController {
     }
     
     func bind() {
-        let validation = nicknameTextField.rx.text.orEmpty
-            //.map { $0.count < 4 && Int($0) == nil }
+        let input = NicknameViewModel.Input(text: nicknameTextField.rx.text, tap: nextButton.rx.tap)
+        let output = viewModel.transform(input: input)
+        
+        /*let validation = nicknameTextField.rx.text.orEmpty//input
             .map { text in
-                text.count >= 1 && text.count < 6 && text.filter{ $0.isNumber }.isEmpty && text.filter{ $0.isSymbol }.isEmpty && text.filter{ $0.isWhitespace }.isEmpty
-            }
-        validation
+                text.count >= 2 && text.count < 6 && text.filter{ $0.isNumber }.isEmpty && text.filter{ $0.isSymbol }.isEmpty && text.filter{ $0.isWhitespace }.isEmpty
+            }*/
+        output.validation//validation
             .bind(to: nextButton.rx.isEnabled, descriptionLabel.rx.isHidden)
             .disposed(by: disposeBag)
-        validation
+        output.validation//validation
             .bind(with: self) { owner, value in
                 owner.nextButton.isEnabled = value
                 owner.descriptionLabel.isHidden = value
@@ -46,10 +48,10 @@ class NicknameViewController: UIViewController {
                 owner.nextButton.backgroundColor = color
             }
             .disposed(by: disposeBag)
-        validText
+        output.validText//validText
             .bind(to: descriptionLabel.rx.text)
             .disposed(by: disposeBag)
-        nextButton.rx.tap
+        output.tap//nextButton.rx.tap//input,output
             .bind(with: self) { owner, value in
                 owner.navigationController?.pushViewController(BirthdayViewController(), animated: true)
             }

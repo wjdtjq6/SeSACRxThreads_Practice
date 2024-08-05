@@ -72,6 +72,7 @@ class BirthdayViewController: UIViewController {
     var day = BehaviorRelay(value: 1)
     let nColor = Observable.just(UIColor.black)
     let disposeBag = DisposeBag()
+    let viewModel = BirthdayViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Color.white
@@ -79,51 +80,34 @@ class BirthdayViewController: UIViewController {
         bind()
     }
     func bind() {
-        //1.
-        let yearFormatter = DateFormatter()
-        yearFormatter.dateFormat = "yyyy"
-        let yearStr = yearFormatter.string(from: Date.now)
-        year = BehaviorRelay(value: Int(yearStr)!)
+        let input = BirthdayViewModel.Input(birthday: birthDayPicker.rx.date, tap: nextButton.rx.tap)
+        let output = viewModel.transform(input: input)
         
-        let monthFormatter = DateFormatter()
-        monthFormatter.dateFormat = "M"
-        let monthStr = monthFormatter.string(from: Date.now)
-        month = BehaviorRelay(value: Int(monthStr)!)
-        
-        let dayFormatter = DateFormatter()
-        dayFormatter.dateFormat = "d"
-        let dayStr = dayFormatter.string(from: Date.now)
-        day = BehaviorRelay(value:Int(dayStr)!)
-        year
+        output.year
             .map { "\($0)년" }
             .bind(to: yearLabel.rx.text)
             .disposed(by: disposeBag)
-        month
+        output.month
             .map{ "\($0)월" }
             .bind(to: monthLabel.rx.text)
             .disposed(by: disposeBag)
-        day
+        output.day
             .map{ "\($0)일" }
             .bind(to: dayLabel.rx.text)
             .disposed(by: disposeBag)
         //2,3.
-        birthDayPicker.rx.date
+        input.birthday//birthDayPicker.rx.date//input
             .bind(with: self) { owner, date in
                 let component = Calendar.current.dateComponents([.day,.month,.year], from: date)
                 owner.year.accept(component.year!)
                 owner.month.accept(component.month!)
                 owner.day.accept(component.day!)
             }
-        let validation = birthDayPicker.rx.date
-            .map { date -> Bool in
-                let component = Calendar.current.dateComponents([.year], from: date, to: Date())
-                guard let age = component.year else { return false }
-                return age >= 17
-            }
-        validation
+            .disposed(by: disposeBag)
+        output.validation//validation
             .bind(to: nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
-        validation
+        output.validation//validation
             .bind(with: self) { owner, value in
                 let labelColor: UIColor = value ? .systemBlue : .systemRed
                 owner.infoLabel.textColor = labelColor
@@ -133,14 +117,16 @@ class BirthdayViewController: UIViewController {
                 let buttonColor: UIColor = value ? .systemBlue : .lightGray
                 owner.nextButton.backgroundColor = buttonColor
             }
+            .disposed(by: disposeBag)
         //4.
-        nextButton.rx.tap
+        output.tap//nextButton.rx.tap//input,output
             .bind(with: self) { owner, _ in
                 let alert = UIAlertController(title: "완료", message: nil, preferredStyle: .alert)
                 let ok = UIAlertAction(title: "확인", style: .default)
                 alert.addAction(ok)
                 self.present(alert, animated: true)
             }
+            .disposed(by: disposeBag)
     }
     func configureLayout() {
         view.addSubview(infoLabel)

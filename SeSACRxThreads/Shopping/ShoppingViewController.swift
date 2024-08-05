@@ -10,19 +10,27 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import Then
-
+/*
+ 1.즐겨찾기 및 완료 기능 ㅇㅇㅇㅇㅇ
+ 2.다음 페이지로 화면 전환 가능 ㅇㅇㅇㅇㅇ
+ 3.구독 중첩 확인 ㅇㅇㅇㅇ
+ 4.실시간 검색 기능 ㅇㅇㅇ
+ 5.로드
+ 6.추가 ㅇㅇㅇㅇ
+ 7.수정
+ 8.삭제
+ */
 struct Data {
     let title: String
     var isDone = false
-    var isList = false
+    var isLike = false
 }
 class ShoppingViewController: UIViewController {
     var data = [
-        Data(title: "그립톡 구매하기",isDone: true, isList: true),
-        Data(title: "사이다 구매", isDone: false, isList: true)
+        Data(title: "그립톡 구매하기",isDone: true, isLike: true),
+        Data(title: "사이다 구매", isDone: false, isLike: true)
     ]
     lazy var list = BehaviorSubject(value: data)
-    
     let uiView = UIView().then {
         $0.backgroundColor = .systemGray6
         $0.layer.cornerRadius = 10
@@ -37,7 +45,7 @@ class ShoppingViewController: UIViewController {
         $0.setTitleColor(.black, for: .normal)
     }
     let tableView = UITableView().then {
-        $0.register(SearchTableViewCell.self, forCellReuseIdentifier: "SearcgTableViewCell")
+        $0.register(ShoppingTableViewCell.self, forCellReuseIdentifier: "ShoppingTableViewCell")
         $0.rowHeight = 50
         $0.separatorStyle = .none
     }
@@ -50,23 +58,51 @@ class ShoppingViewController: UIViewController {
         bind()
     }
     func bind() {
+        //추가 기능
+        shoppingTextField.rx.controlEvent(.editingDidEndOnExit)
+            .withUnretained(self)
+            .withLatestFrom(shoppingTextField.rx.text.orEmpty) { void, text in
+                    return text
+            }
+            .bind(with: self) { owner, value in
+                owner.data.insert(Data(title: value), at: 0)
+                owner.list.onNext(owner.data)
+                owner.shoppingTextField.text = ""
+            }
+            .disposed(by: disposeBag)
+        //실시간 검색 기능
+        shoppingTextField.rx.text.orEmpty
+            .debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .subscribe(with: self) { owner, value in
+                let result = value == "" ? owner.data : owner.data.filter({ $0.title.contains(value) })
+                owner.list.onNext(result)
+            }
+            .disposed(by: disposeBag)
+        //즐겨찾기 및 완료 기능
         list
             .bind(to: tableView.rx.items(cellIdentifier: "ShoppingTableViewCell", cellType: ShoppingTableViewCell.self)) { (row, element, cell) in
-                
+                var newElement = element
+
                 cell.title.text = element.title
+                cell.leftButton.setImage(UIImage(systemName: element.isDone ? "checkmark.square.fill" : "checkmark.square"), for: .normal)
+                cell.rightButton.setImage(UIImage(systemName: element.isLike ? "star.fill" : "star"), for: .normal)
+
                 cell.leftButton.rx.tap
-                    .subscribe { _ in
-                        cell.leftButton.isSelected.toggle()
-                    }
+                    .subscribe(onNext: { _ in
+                        newElement.isDone.toggle()
+                        cell.leftButton.setImage(UIImage(systemName: element.isDone ? "checkmark.square.fill" : "checkmark.square"), for: .normal)
+                    })
                     .disposed(by: self.disposeBag)
                 cell.rightButton.rx.tap
-                    .subscribe { _ in
-                        cell.rightButton.isSelected.toggle()
-                    }
+                    .subscribe(onNext: { _ in
+                        newElement.isLike.toggle()
+                        newElement.isLike ? cell.rightButton.setImage(UIImage(systemName: "star.fill"), for: .normal) : cell.rightButton.setImage(UIImage(systemName: "star"), for: .normal)
+                    })
                     .disposed(by: self.disposeBag)
             }
             .disposed(by: disposeBag)
-        
+        //화면 전환 기능
         tableView.rx.itemSelected
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(DetailViewController(), animated: true)

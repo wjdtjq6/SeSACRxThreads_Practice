@@ -34,6 +34,9 @@
 		04F6DBFE2C5B0C0300667F4D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F6DBFD2C5B0C0300667F4D /* SearchViewController.swift */; };
 		04F6DC002C5B0C2200667F4D /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F6DBFF2C5B0C2200667F4D /* SearchTableViewCell.swift */; };
 		04F6DC022C5B0D8200667F4D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F6DC012C5B0D8200667F4D /* DetailViewController.swift */; };
+		BF86A6842C60CA7A00813C36 /* PhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6832C60CA7A00813C36 /* PhoneViewModel.swift */; };
+		BF86A6862C60E34400813C36 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6852C60E34400813C36 /* NicknameViewModel.swift */; };
+		BF86A6882C60EADA00813C36 /* BirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6872C60EADA00813C36 /* BirthdayViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,9 @@
 		04F6DBFD2C5B0C0300667F4D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		04F6DBFF2C5B0C2200667F4D /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		04F6DC012C5B0D8200667F4D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		BF86A6832C60CA7A00813C36 /* PhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewModel.swift; sourceTree = "<group>"; };
+		BF86A6852C60E34400813C36 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
+		BF86A6872C60EADA00813C36 /* BirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,7 +216,10 @@
 			children = (
 				0412806E2AEFAD2D00972552 /* BirthdayViewController.swift */,
 				041280702AEFAD3D00972552 /* PhoneViewController.swift */,
+				BF86A6832C60CA7A00813C36 /* PhoneViewModel.swift */,
 				041280722AEFAD4B00972552 /* NicknameViewController.swift */,
+				BF86A6852C60E34400813C36 /* NicknameViewModel.swift */,
+				BF86A6872C60EADA00813C36 /* BirthdayViewModel.swift */,
 			);
 			path = SignUpOptional;
 			sourceTree = "<group>";
@@ -373,10 +382,13 @@
 				041280562AEFA04800972552 /* SignInViewController.swift in Sources */,
 				041280282AEF9BAB00972552 /* ViewController.swift in Sources */,
 				039F937E2C5E680900181C6C /* ShoppingViewController.swift in Sources */,
+				BF86A6842C60CA7A00813C36 /* PhoneViewModel.swift in Sources */,
 				041280632AEFA0CE00972552 /* PointButton.swift in Sources */,
 				04F6DC022C5B0D8200667F4D /* DetailViewController.swift in Sources */,
 				041280242AEF9BAB00972552 /* AppDelegate.swift in Sources */,
 				04F6DBFE2C5B0C0300667F4D /* SearchViewController.swift in Sources */,
+				BF86A6882C60EADA00813C36 /* BirthdayViewModel.swift in Sources */,
+				BF86A6862C60E34400813C36 /* NicknameViewModel.swift in Sources */,
 				04F6DC002C5B0C2200667F4D /* SearchTableViewCell.swift in Sources */,
 				041280732AEFAD4B00972552 /* NicknameViewController.swift in Sources */,
 				039649BC2C5F492600799E4D /* ShoppingTableViewCell.swift in Sources */,

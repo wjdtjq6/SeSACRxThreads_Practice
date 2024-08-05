@@ -16,10 +16,9 @@ class SignInViewController: UIViewController {
     let passwordTextField = SignTextField(placeholderText: "비밀번호를 입력해주세요")
     let signInButton = PointButton(title: "로그인")
     let signUpButton = UIButton()
-    let emailRelay = BehaviorRelay<String>(value: "")
-    let passwordRelay = BehaviorRelay<String>(value: "")
-    let viewModel = SignInViewModel()
+    
     let disposeBag = DisposeBag()
+    let viewModel = SignInViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,22 +31,10 @@ class SignInViewController: UIViewController {
     }
     
     func bind() {
-        
-        let validationEmail = emailTextField.rx.text.orEmpty
-            .map({ $0.count > 0 })
-            
-        emailTextField.rx.text.orEmpty
-            .bind(to: emailRelay)
-            .disposed(by: disposeBag)
-                    
-        let validationPW = passwordTextField.rx.text.orEmpty
-            .map { $0.count > 0 }
-        
-        passwordTextField.rx.text.orEmpty
-            .bind(to: passwordRelay)
-            .disposed(by: disposeBag)
+        let input = SignInViewModel.Input(textEmail: emailTextField.rx.text, textPW: passwordTextField.rx.text, tap: signInButton.rx.tap)
+        let output = viewModel.transform(input: input)
 
-        Observable.combineLatest(validationEmail, validationPW) { $0 && $1 }
+        Observable.combineLatest(output.validationEmail, output.validationPW) { $0 && $1 }//ouput
             .bind(with: self, onNext: { owner, value in
                 owner.signInButton.isEnabled = value
                 let color: UIColor = value ? .systemBlue : .black
@@ -55,17 +42,17 @@ class SignInViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        signInButton.rx.tap
-            .subscribe { _ in
-                let email = self.emailRelay.value
-                let pw = self.passwordRelay.value
+        output.tap//signInButton.rx.tap//input,output
+            .bind(onNext: { _ in
+                let email = output.emailRelay.value//.value
+                let pw = output.passwordRelay.value
                 
                 if let isPW = self.viewModel.account[email], isPW == pw {
                     self.showAlert(message: "로그인 성공!")
                 } else {
                     self.showAlert(message: "이메일 또는 비밀번호가 잘못되었습니다.")
                 }
-            }
+            })
             .disposed(by: disposeBag)
     }
 
