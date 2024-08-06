@@ -40,6 +40,7 @@
 		BF86A68A2C612C8A00813C36 /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6892C612C8A00813C36 /* PasswordViewModel.swift */; };
 		BF86A68C2C612F3E00813C36 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A68B2C612F3E00813C36 /* SignUpViewModel.swift */; };
 		BF86A68E2C61337A00813C36 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A68D2C61337A00813C36 /* SearchViewModel.swift */; };
+		BF86A6902C626FAC00813C36 /* ShoppingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A68F2C626FAB00813C36 /* ShoppingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		BF86A6892C612C8A00813C36 /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
 		BF86A68B2C612F3E00813C36 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		BF86A68D2C61337A00813C36 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		BF86A68F2C626FAB00813C36 /* ShoppingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 			children = (
 				039F937D2C5E680900181C6C /* ShoppingViewController.swift */,
 				039649BB2C5F492600799E4D /* ShoppingTableViewCell.swift */,
+				BF86A68F2C626FAB00813C36 /* ShoppingViewModel.swift */,
 			);
 			path = Shopping;
 			sourceTree = "<group>";
@@ -236,9 +239,9 @@
 			isa = PBXGroup;
 			children = (
 				04F6DBFD2C5B0C0300667F4D /* SearchViewController.swift */,
+				BF86A68D2C61337A00813C36 /* SearchViewModel.swift */,
 				04F6DBFF2C5B0C2200667F4D /* SearchTableViewCell.swift */,
 				04F6DC012C5B0D8200667F4D /* DetailViewController.swift */,
-				BF86A68D2C61337A00813C36 /* SearchViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				0412806A2AEFA91E00972552 /* SignUpViewController.swift in Sources */,
 				041280712AEFAD3D00972552 /* PhoneViewController.swift in Sources */,
 				041280262AEF9BAB00972552 /* SceneDelegate.swift in Sources */,
+				BF86A6902C626FAC00813C36 /* ShoppingViewModel.swift in Sources */,
 				041280582AEFA05300972552 /* SignInViewModel.swift in Sources */,
 				BF86A68A2C612C8A00813C36 /* PasswordViewModel.swift in Sources */,
 			);

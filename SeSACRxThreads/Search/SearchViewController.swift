@@ -23,9 +23,7 @@ class SearchViewController: UIViewController {
     let searchBar = UISearchBar()
        
     let disposeBag = DisposeBag()
-    
-    var data = ["A", "B", "C", "AB", "D", "ABC", "BBB", "EC", "SA", "AAAB", "ED", "F", "G", "H"]
-    lazy var list = BehaviorSubject(value:data)
+    let viewModel = SearchViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,7 +34,10 @@ class SearchViewController: UIViewController {
     }
     
     func bind() {
-        list
+        let input = SearchViewModel.Input(searchText: searchBar.rx.text, click: searchBar.rx.searchButtonClicked)
+        let output = viewModel.transform(input: input)
+        
+        output.list
             .bind(to: tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { (row, element, cell) in
                 
                 cell.appNameLabel.text = element
@@ -49,36 +50,6 @@ class SearchViewController: UIViewController {
                     .disposed(by: cell.disposeBag) // 뷰 컨트롤러와 생명주기가 같지 않기 때문에 셀의 disposeBag을 사용해야함
             }
             .disposed(by: disposeBag)
-        
-        
-        // searchbar
-        searchBar.rx.searchButtonClicked
-            .withUnretained(self)
-            .withLatestFrom(searchBar.rx.text.orEmpty) { void, text in
-                return text /*+ "조합해서 추가 가능"*/
-            }
-            .bind(with: self) {owner, value in
-                owner.data.insert(value, at: 0)
-                owner.list.onNext(owner.data)
-                print("검색버튼 클릭")
-            }
-            .disposed(by: disposeBag)
-        // value on chaged
-        // 입력하자마자 통신 되는 것이 아니라 시간이 좀 지난 후 통신하고 싶을 때는?
-        // -> debounce vs throttle
-        
-        
-        //MARK: 실시간 검색기능
-//        searchBar.rx.text.orEmpty
-//            .debounce(.seconds(1), scheduler: MainScheduler.instance)
-//            .distinctUntilChanged()// 값이 같다면 다시 호출하지 마
-//            .bind(with: self) { owner, value in
-//                print("실시간 검색", value)
-//                let result = value.isEmpty ? owner.data : owner.data.filter { $0.contains(value)} //원본 데이터를 건들지 않고 새로운 배열을 만듬
-//                owner.list.onNext(result) // onnext 값 교체
-//                print(self.list)
-//            }
-//            .disposed(by: disposeBag)
     }
     private func setSearchController() {
         view.addSubview(searchBar)
@@ -100,26 +71,3 @@ class SearchViewController: UIViewController {
 
     }
 }
-//#if DEBUG
-//import SwiftUI
-//struct ViewControllerRepresentable_DBVC: UIViewControllerRepresentable {
-//
-//    func updateUIViewController(_ uiView: UIViewController,context: Context) {
-//        // leave this empty
-//    }
-//    @available(iOS 13.0.0, *)
-//    func makeUIViewController(context: Context) -> UIViewController{
-//        SearchViewController()
-//    }
-//}
-//@available(iOS 13.0, *)
-//struct ViewControllerRepresentable_DBVC_PreviewProvider: PreviewProvider {
-//    static var previews: some View {
-//        Group {
-//            ViewControllerRepresentable_DBVC()
-//                .ignoresSafeArea()
-//                .previewDisplayName(/*@START_MENU_TOKEN@*/"Preview"/*@END_MENU_TOKEN@*/)
-//        }
-//
-//    }
-//} #endif
