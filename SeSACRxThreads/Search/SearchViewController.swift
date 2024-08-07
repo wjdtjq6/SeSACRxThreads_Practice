@@ -23,34 +23,53 @@ class SearchViewController: UIViewController {
     let searchBar = UISearchBar()
        
     let disposeBag = DisposeBag()
-    let viewModel = SearchViewModel()
+    let viewModel = SearchViewModel2()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
         configure()
         setSearchController()
-        bind()
+        //bind()
+        bindRefactoring()
     }
-    
-    func bind() {
-        let input = SearchViewModel.Input(searchText: searchBar.rx.text, click: searchBar.rx.searchButtonClicked)
-        let output = viewModel.transform(input: input)
-        
-        output.list
-            .bind(to: tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { (row, element, cell) in
-                
+    func bindRefactoring() {
+        viewModel.list
+            .bind(to: tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { (row, element, cell ) in
                 cell.appNameLabel.text = element
-                cell.appIconImageView.backgroundColor = .systemBlue
+                cell.appIconImageView.backgroundColor = .systemCyan
                 cell.downloadButton.rx.tap
                     .subscribe(with: self) { owner, _ in
-                        print("버튼 클릭")
+                        print("button Clicked")
                         owner.navigationController?.pushViewController(DetailViewController(), animated: true)
                     }
-                    .disposed(by: cell.disposeBag) // 뷰 컨트롤러와 생명주기가 같지 않기 때문에 셀의 disposeBag을 사용해야함
+                    .disposed(by: cell.disposeBag)//vc와 생명주기가 같지 않기 때문에 셀의 disposeBag을 사용해야함
             }
+        searchBar.rx.text.orEmpty
+            .bind(to: viewModel.text)
+            .disposed(by: disposeBag)
+        searchBar.rx.searchButtonClicked
+            .bind(to: viewModel.click)
             .disposed(by: disposeBag)
     }
+//    func bind() {
+//        let input = SearchViewModel.Input(searchText: searchBar.rx.text, click: searchBar.rx.searchButtonClicked)
+//        let output = viewModel.transform(input: input)
+//        
+//        output.list
+//            .bind(to: tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { (row, element, cell) in
+//                
+//                cell.appNameLabel.text = element
+//                cell.appIconImageView.backgroundColor = .systemBlue
+//                cell.downloadButton.rx.tap
+//                    .subscribe(with: self) { owner, _ in
+//                        print("버튼 클릭")
+//                        owner.navigationController?.pushViewController(DetailViewController(), animated: true)
+//                    }
+//                    .disposed(by: cell.disposeBag) // 뷰 컨트롤러와 생명주기가 같지 않기 때문에 셀의 disposeBag을 사용해야함
+//            }
+//            .disposed(by: disposeBag)
+//    }
     private func setSearchController() {
         view.addSubview(searchBar)
         navigationItem.titleView = searchBar

@@ -7,8 +7,93 @@
 
 import Foundation
 import RxSwift
-import RxSwift
+import RxCocoa
+import UIKit
 
+struct Data {
+    let title: String
+    var isDone = false
+    var isLike = false
+}
 class ShoppingViewModel {
     
+    let disposeBag = DisposeBag()
+    //테이블뷰 데이터
+    private var data = [
+        Data(title: "그립톡 구매하기",isDone: true, isLike: false),
+        Data(title: "사이다 구매", isDone: false, isLike: true)
+    ]
+    private lazy var list = BehaviorSubject(value: data)//원래 BehaviorSubject
+    //컬렉션뷰 데이터
+    private var recentList = ["키보드","거치대","마우스","트랙패드"]
+
+    struct Input {
+        let enterTextField: ControlEvent<()>//shoppingTextField.rx.controlEvent
+        var text: ControlProperty<String>//shoppingTextField.rx.text.orempty
+        let select: ControlEvent<IndexPath>//tableView.rx.itemSelected
+        //테이블뷰 클릭 시 들어오는 글자. 컬렉션뷰에 업데이트
+        let recentText: Observable<String>
+    }
+    struct Output {
+        let list: BehaviorSubject<[Data]>
+        let recentList: Observable<[String]>
+        let enterTextField: ControlEvent<()>//shoppingTextField.rx.controlEvent
+        let select: ControlEvent<IndexPath>
+    }
+    func transform(input: Input) -> Output {
+        let recentList = BehaviorSubject(value: recentList)
+        let list = BehaviorSubject(value: data)
+        //tableView에 추가
+        input.recentText
+            .subscribe(with: self) { owner, value in
+                print(value)
+                owner.data.append(Data(title: value,isDone: false, isLike: false))//recentList이면 컬렉션뷰에 추가됨
+                list.onNext(owner.data)//recentList이면 컬렉션뷰에 추가됨
+            }
+            .disposed(by: disposeBag)
+        //컬렉션뷰에 추가 / 근데 안됨 테이블뷰에 중복으로 추가되고
+        input.recentText
+            .subscribe(with: self) { owner, value in
+                print(value)
+                owner.recentList.append(value)
+                recentList.onNext(owner.recentList)
+            }
+            .disposed(by: disposeBag)
+        
+        //컬렉션뷰 셀을 선택했을때 테이블뷰에 할 일이 추가되도록
+        input.enterTextField
+            .withLatestFrom(input.text)
+            .subscribe(with: self) { owner, value in
+                print(value,"엔터")
+                owner.data.insert(Data(title: value), at: 0)
+                owner.list.onNext(owner.data)
+                //input.text = ""
+            }
+            .disposed(by: disposeBag)
+        //textFiled에서 tableview에 추가
+        input.recentText
+            .subscribe(with: self) { owner, value in
+                print(value)
+                owner.data.append(Data(title: value,isDone: true, isLike: true))//recentList이면 컬렉션뷰에 추가됨
+                list.onNext(owner.data)//recentList이면 컬렉션뷰에 추가됨
+            }
+            .disposed(by: disposeBag)
+        
+        input.select
+            .subscribe(with: self) { owner, _ in
+            }
+            .disposed(by: disposeBag)
+        
+        //실시간 검색 기능
+        input.text
+            .distinctUntilChanged()
+            .subscribe(with: self) { owner, value in
+                print(value,"text")
+                let result = value.isEmpty ? owner.data : owner.data.filter({ $0.title.contains(value) })
+                owner.list.onNext(result)
+            }
+            .disposed(by: disposeBag)
+        return Output(list: list, recentList: recentList, enterTextField: input.enterTextField, select: input.select)
+    }
 }
+

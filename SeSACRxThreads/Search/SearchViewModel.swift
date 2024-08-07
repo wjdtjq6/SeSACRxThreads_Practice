@@ -51,4 +51,7 @@ class SearchViewModel {
             .disposed(by: disposeBag)
         return Output(list: list, click: input.click)
     }
+    func transformRefactoring() {
+        
+    }
 }

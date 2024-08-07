@@ -20,17 +20,7 @@ import Then
  7.수정
  8.삭제
  */
-struct Data {
-    let title: String
-    var isDone = false
-    var isLike = false
-}
 class ShoppingViewController: UIViewController {
-    var data = [
-        Data(title: "그립톡 구매하기",isDone: true, isLike: true),
-        Data(title: "사이다 구매", isDone: false, isLike: true)
-    ]
-    lazy var list = BehaviorSubject(value: data)
     let uiView = UIView().then {
         $0.backgroundColor = .systemGray6
         $0.layer.cornerRadius = 10
@@ -49,7 +39,10 @@ class ShoppingViewController: UIViewController {
         $0.rowHeight = 50
         $0.separatorStyle = .none
     }
+    let searchBar = UISearchBar()
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     let disposeBag = DisposeBag()
+    let viewModel = ShoppingViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         configureHierarchy()
@@ -58,29 +51,17 @@ class ShoppingViewController: UIViewController {
         bind()
     }
     func bind() {
-        //추가 기능
-        shoppingTextField.rx.controlEvent(.editingDidEndOnExit)
-            .withUnretained(self)
-            .withLatestFrom(shoppingTextField.rx.text.orEmpty) { void, text in
-                    return text
-            }
-            .bind(with: self) { owner, value in
-                owner.data.insert(Data(title: value), at: 0)
-                owner.list.onNext(owner.data)
-                owner.shoppingTextField.text = ""
-            }
-            .disposed(by: disposeBag)
-        //실시간 검색 기능
-        shoppingTextField.rx.text.orEmpty
-            .debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .subscribe(with: self) { owner, value in
-                let result = value == "" ? owner.data : owner.data.filter({ $0.title.contains(value) })
-                owner.list.onNext(result)
+        let recentText = PublishSubject<String>()
+        let input = ShoppingViewModel.Input(enterTextField: shoppingTextField.rx.controlEvent(.editingDidEndOnExit), text: shoppingTextField.rx.text.orEmpty, select: tableView.rx.itemSelected, recentText: recentText)
+        let output = viewModel.transform(input: input)
+        //컬렉션 뷰
+        output.recentList
+            .bind(to: collectionView.rx.items(cellIdentifier: ShoppingCollectionViewCell.identifier, cellType: ShoppingCollectionViewCell.self)) { (row,element,cell) in
+                cell.label.text = "\(element)"
             }
             .disposed(by: disposeBag)
         //즐겨찾기 및 완료 기능
-        list
+        output.list
             .bind(to: tableView.rx.items(cellIdentifier: "ShoppingTableViewCell", cellType: ShoppingTableViewCell.self)) { (row, element, cell) in
                 var newElement = element
 
@@ -103,9 +84,16 @@ class ShoppingViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         //화면 전환 기능
-        tableView.rx.itemSelected
+        output.select//tableView.rx.itemSelected//Viewmodel,input,output
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(DetailViewController(), animated: true)
+            }
+            .disposed(by: disposeBag)
+        //컬렉션뷰 셀을 선택했을때 테이블뷰에 할 일이 추가되도록
+        Observable.zip(collectionView.rx.itemSelected, collectionView.rx.modelSelected(String.self))
+            .map { "\($0.1)" }
+            .subscribe(with: self) { owner, value in
+                recentText.onNext(value)
             }
             .disposed(by: disposeBag)
     }
@@ -114,6 +102,9 @@ class ShoppingViewController: UIViewController {
         view.addSubview(shoppingTextField)
         view.addSubview(addButton)
         view.addSubview(tableView)
+        view.addSubview(searchBar)
+        view.addSubview(collectionView)
+        collectionView.register(ShoppingCollectionViewCell.self, forCellWithReuseIdentifier: ShoppingCollectionViewCell.identifier)
     }
     func configureLayout() {
         uiView.snp.makeConstraints { make in
@@ -132,8 +123,14 @@ class ShoppingViewController: UIViewController {
             make.trailing.equalTo(uiView).inset(10)
             make.width.equalTo(50)
         }
-        tableView.snp.makeConstraints { make in
+        collectionView.snp.makeConstraints { make in
             make.top.equalTo(uiView.snp.bottom).offset(10)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            //make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(50)
+        }
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(collectionView.snp.bottom).offset(10)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(10)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
@@ -141,5 +138,11 @@ class ShoppingViewController: UIViewController {
     func configureUI() {
         view.backgroundColor = .white
         navigationItem.title = "쇼핑"
+    }
+    static func layout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 120, height: 40)
+        layout.scrollDirection = .horizontal
+        return layout
     }
 }
