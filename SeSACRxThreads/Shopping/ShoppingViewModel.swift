@@ -31,7 +31,7 @@ class ShoppingViewModel {
         let enterTextField: ControlEvent<()>//shoppingTextField.rx.controlEvent
         var text: ControlProperty<String>//shoppingTextField.rx.text.orempty
         let select: ControlEvent<IndexPath>//tableView.rx.itemSelected
-        //테이블뷰 클릭 시 들어오는 글자. 컬렉션뷰에 업데이트
+        //테이블뷰 클릭 시 들어오는 글자. 컬렉션뷰에 업데이트/테이블뷰에 업데이트해야함
         let recentText: Observable<String>
     }
     struct Output {
@@ -46,38 +46,40 @@ class ShoppingViewModel {
         //tableView에 추가
         input.recentText
             .subscribe(with: self) { owner, value in
-                print(value)
+                print(value,"테이블뷰")
                 owner.data.append(Data(title: value,isDone: false, isLike: false))//recentList이면 컬렉션뷰에 추가됨
                 list.onNext(owner.data)//recentList이면 컬렉션뷰에 추가됨
             }
             .disposed(by: disposeBag)
-        //컬렉션뷰에 추가 / 근데 안됨 테이블뷰에 중복으로 추가되고
-        input.recentText
-            .subscribe(with: self) { owner, value in
-                print(value)
-                owner.recentList.append(value)
-                recentList.onNext(owner.recentList)
-            }
-            .disposed(by: disposeBag)
+        
+//        //textFiled에서 tableview에 추가
+//        input.recentText
+//            .subscribe(with: self) { owner, value in
+//                print(value,"TF->TV")
+//                owner.data.append(Data(title: value,isDone: false, isLike: false))//recentList이면 컬렉션뷰에 추가됨
+//                list.onNext(owner.data)//recentList이면 컬렉션뷰에 추가됨
+//            }
+//            .disposed(by: disposeBag)
         
         //컬렉션뷰 셀을 선택했을때 테이블뷰에 할 일이 추가되도록
         input.enterTextField
             .withLatestFrom(input.text)
             .subscribe(with: self) { owner, value in
                 print(value,"엔터")
-                owner.data.insert(Data(title: value), at: 0)
-                owner.list.onNext(owner.data)
+                owner.data.insert(Data(title: value), at: owner.data.endIndex)
+                list.onNext(owner.data)
                 //input.text = ""
             }
             .disposed(by: disposeBag)
-        //textFiled에서 tableview에 추가
-        input.recentText
-            .subscribe(with: self) { owner, value in
-                print(value)
-                owner.data.append(Data(title: value,isDone: true, isLike: true))//recentList이면 컬렉션뷰에 추가됨
-                list.onNext(owner.data)//recentList이면 컬렉션뷰에 추가됨
-            }
-            .disposed(by: disposeBag)
+        
+//        //컬렉션뷰에 추가 / 근데 안됨 테이블뷰에 중복으로 추가되고/컬렉션뷰에 왜 추가하지? 필요없음!!
+//        input.recentText
+//            .subscribe(with: self) { owner, value in
+//                print(value,"컬렉션뷰")
+//                owner.recentList.append(value)
+//                recentList.onNext(owner.recentList)
+//            }
+//            .disposed(by: disposeBag)
         
         input.select
             .subscribe(with: self) { owner, _ in
@@ -87,10 +89,11 @@ class ShoppingViewModel {
         //실시간 검색 기능
         input.text
             .distinctUntilChanged()
+            .debug("검색")
             .subscribe(with: self) { owner, value in
                 print(value,"text")
                 let result = value.isEmpty ? owner.data : owner.data.filter({ $0.title.contains(value) })
-                owner.list.onNext(result)
+                list.onNext(result)
             }
             .disposed(by: disposeBag)
         return Output(list: list, recentList: recentList, enterTextField: input.enterTextField, select: input.select)

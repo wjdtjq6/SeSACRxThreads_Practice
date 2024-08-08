@@ -72,15 +72,15 @@ class ShoppingViewController: UIViewController {
                 cell.leftButton.rx.tap
                     .subscribe(onNext: { _ in
                         newElement.isDone.toggle()
-                        cell.leftButton.setImage(UIImage(systemName: element.isDone ? "checkmark.square.fill" : "checkmark.square"), for: .normal)
+                        cell.leftButton.setImage(UIImage(systemName: newElement.isDone ? "checkmark.square.fill" : "checkmark.square"), for: .normal)
                     })
-                    .disposed(by: self.disposeBag)
+                    .disposed(by: cell.disposeBag)
                 cell.rightButton.rx.tap
                     .subscribe(onNext: { _ in
                         newElement.isLike.toggle()
-                        newElement.isLike ? cell.rightButton.setImage(UIImage(systemName: "star.fill"), for: .normal) : cell.rightButton.setImage(UIImage(systemName: "star"), for: .normal)
+                        cell.rightButton.setImage(UIImage(systemName: newElement.isLike ? "star.fill" : "star"), for: .normal)
                     })
-                    .disposed(by: self.disposeBag)
+                    .disposed(by: cell.disposeBag)
             }
             .disposed(by: disposeBag)
         //화면 전환 기능
