@@ -33,7 +33,7 @@ class ShoppingViewModel {
         let select: ControlEvent<IndexPath>//tableView.rx.itemSelected
         //테이블뷰 클릭 시 들어오는 글자. 컬렉션뷰에 업데이트/테이블뷰에 업데이트해야함
         let recentText: Observable<String>
-        let cellLeftTap: PublishSubject<Int>//추가하면 완료,즐겨찾기 초기화되는 문제 해결
+        let cellLeftTap: Observable<Int>//추가하면 완료,즐겨찾기 초기화되는 문제 해결
         let rightTap: Observable<Int>//추가하면 완료,즐겨찾기 초기화되는 문제 해결
     }
     struct Output {

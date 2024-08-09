@@ -34,7 +34,8 @@ class BoxOfficeViewController: UIViewController {
             .disposed(by: disposeBag)
         output.movieList
             .bind(to: tableView.rx.items(cellIdentifier: MovieTableViewCell.identifier, cellType: MovieTableViewCell.self)) { (row,element,cell) in
-                cell.appNameLabel.text = element
+                cell.appNameLabel.text = element.movieNm
+                cell.downloadButton.setTitle(element.openDt, for: .normal)
             }
             .disposed(by: disposeBag)
         Observable.zip(tableView.rx.itemSelected, tableView.rx.modelSelected(String.self))

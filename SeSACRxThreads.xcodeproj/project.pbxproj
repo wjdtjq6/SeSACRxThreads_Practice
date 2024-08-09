@@ -49,6 +49,11 @@
 		BF86A6AA2C639A0F00813C36 /* BoxOfficeViewModel2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6A92C639A0F00813C36 /* BoxOfficeViewModel2.swift */; };
 		BF86A6AC2C63C44A00813C36 /* ShoppingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6AB2C63C44A00813C36 /* ShoppingCollectionViewCell.swift */; };
 		BFF42D862C65ECE10043D110 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF42D852C65ECE10043D110 /* NetworkManager.swift */; };
+		BFF42D882C65EE1B0043D110 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF42D872C65EE1A0043D110 /* Movie.swift */; };
+		BFF42D8B2C663FBC0043D110 /* iTunesSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF42D8A2C663FBC0043D110 /* iTunesSearchViewController.swift */; };
+		BFF42D8D2C6642780043D110 /* iTunesSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF42D8C2C6642780043D110 /* iTunesSearchViewModel.swift */; };
+		BFF42D912C664EA40043D110 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF42D902C664EA40043D110 /* NetworkManager.swift */; };
+		BFF42D932C664EE60043D110 /* iTunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF42D922C664EE60043D110 /* iTunes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +116,11 @@
 		BF86A6A92C639A0F00813C36 /* BoxOfficeViewModel2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeViewModel2.swift; sourceTree = "<group>"; };
 		BF86A6AB2C63C44A00813C36 /* ShoppingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCollectionViewCell.swift; sourceTree = "<group>"; };
 		BFF42D852C65ECE10043D110 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BFF42D872C65EE1A0043D110 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		BFF42D8A2C663FBC0043D110 /* iTunesSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesSearchViewController.swift; sourceTree = "<group>"; };
+		BFF42D8C2C6642780043D110 /* iTunesSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesSearchViewModel.swift; sourceTree = "<group>"; };
+		BFF42D902C664EA40043D110 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BFF42D922C664EE60043D110 /* iTunes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +186,7 @@
 		041280222AEF9BAB00972552 /* SeSACRxThreads */ = {
 			isa = PBXGroup;
 			children = (
+				BFF42D892C663F9F0043D110 /* iTunes */,
 				BF86A6A02C636F3400813C36 /* BoxOffice */,
 				039F937C2C5E67FA00181C6C /* Shopping */,
 				041280532AEF9C1F00972552 /* SignUp */,
@@ -274,8 +285,20 @@
 				BF86A6A52C636F8100813C36 /* MovieTableViewCell.swift */,
 				BF86A6A72C636FAB00813C36 /* MovieCollectionViewCell.swift */,
 				BFF42D852C65ECE10043D110 /* NetworkManager.swift */,
+				BFF42D872C65EE1A0043D110 /* Movie.swift */,
 			);
 			path = BoxOffice;
+			sourceTree = "<group>";
+		};
+		BFF42D892C663F9F0043D110 /* iTunes */ = {
+			isa = PBXGroup;
+			children = (
+				BFF42D8A2C663FBC0043D110 /* iTunesSearchViewController.swift */,
+				BFF42D8C2C6642780043D110 /* iTunesSearchViewModel.swift */,
+				BFF42D902C664EA40043D110 /* NetworkManager.swift */,
+				BFF42D922C664EE60043D110 /* iTunes.swift */,
+			);
+			path = iTunes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,12 +453,17 @@
 				039F937E2C5E680900181C6C /* ShoppingViewController.swift in Sources */,
 				BF86A6842C60CA7A00813C36 /* PhoneViewModel.swift in Sources */,
 				041280632AEFA0CE00972552 /* PointButton.swift in Sources */,
+				BFF42D932C664EE60043D110 /* iTunes.swift in Sources */,
 				04F6DC022C5B0D8200667F4D /* DetailViewController.swift in Sources */,
+				BFF42D8D2C6642780043D110 /* iTunesSearchViewModel.swift in Sources */,
 				BF86A6AA2C639A0F00813C36 /* BoxOfficeViewModel2.swift in Sources */,
 				041280242AEF9BAB00972552 /* AppDelegate.swift in Sources */,
 				04F6DBFE2C5B0C0300667F4D /* SearchViewController.swift in Sources */,
 				BFF42D862C65ECE10043D110 /* NetworkManager.swift in Sources */,
+				BFF42D882C65EE1B0043D110 /* Movie.swift in Sources */,
 				BF86A6882C60EADA00813C36 /* BirthdayViewModel.swift in Sources */,
+				BFF42D912C664EA40043D110 /* NetworkManager.swift in Sources */,
+				BFF42D8B2C663FBC0043D110 /* iTunesSearchViewController.swift in Sources */,
 				BF86A68C2C612F3E00813C36 /* SignUpViewModel.swift in Sources */,
 				BF86A6862C60E34400813C36 /* NicknameViewModel.swift in Sources */,
 				04F6DC002C5B0C2200667F4D /* SearchTableViewCell.swift in Sources */,

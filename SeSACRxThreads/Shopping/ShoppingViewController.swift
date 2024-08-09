@@ -65,7 +65,7 @@ class ShoppingViewController: UIViewController {
         //즐겨찾기 및 완료 기능
         output.list
             .bind(to: tableView.rx.items(cellIdentifier: "ShoppingTableViewCell", cellType: ShoppingTableViewCell.self)) { (row, element, cell) in
-                var newElement = element
+                //var newElement = element
 
                 cell.title.text = element.title
                 cell.leftButton.setImage(UIImage(systemName: element.isDone ? "checkmark.square.fill" : "checkmark.square"), for: .normal)
