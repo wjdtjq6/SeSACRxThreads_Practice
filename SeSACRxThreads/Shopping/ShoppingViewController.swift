@@ -52,7 +52,9 @@ class ShoppingViewController: UIViewController {
     }
     func bind() {
         let recentText = PublishSubject<String>()
-        let input = ShoppingViewModel.Input(enterTextField: shoppingTextField.rx.controlEvent(.editingDidEndOnExit), text: shoppingTextField.rx.text.orEmpty, select: tableView.rx.itemSelected, recentText: recentText)
+        let cellLeftButtonTap = PublishSubject<Int>()//추가하면 완료,즐겨찾기 초기화되는 문제 해결
+        let cellRightButtonTap = PublishSubject<Int>()//추가하면 완료,즐겨찾기 초기화되는 문제 해결
+        let input = ShoppingViewModel.Input(enterTextField: shoppingTextField.rx.controlEvent(.editingDidEndOnExit), text: shoppingTextField.rx.text.orEmpty, select: tableView.rx.itemSelected, recentText: recentText, cellLeftTap: cellLeftButtonTap, rightTap: cellRightButtonTap)
         let output = viewModel.transform(input: input)
         //컬렉션 뷰
         output.recentList
@@ -68,19 +70,24 @@ class ShoppingViewController: UIViewController {
                 cell.title.text = element.title
                 cell.leftButton.setImage(UIImage(systemName: element.isDone ? "checkmark.square.fill" : "checkmark.square"), for: .normal)
                 cell.rightButton.setImage(UIImage(systemName: element.isLike ? "star.fill" : "star"), for: .normal)
-
+                //TODO: 추가하면 완료,즐겨찾기 초기화
                 cell.leftButton.rx.tap
                     .subscribe(onNext: { _ in
-                        newElement.isDone.toggle()
-                        cell.leftButton.setImage(UIImage(systemName: newElement.isDone ? "checkmark.square.fill" : "checkmark.square"), for: .normal)
+//                        newElement.isDone.toggle()
+//                        cell.leftButton.setImage(UIImage(systemName: newElement.isDone ? "checkmark.square.fill" : "checkmark.square"), for: .normal)
+                        cellLeftButtonTap.onNext(row)
+                        print(cellLeftButtonTap)
                     })
                     .disposed(by: cell.disposeBag)
                 cell.rightButton.rx.tap
                     .subscribe(onNext: { _ in
-                        newElement.isLike.toggle()
-                        cell.rightButton.setImage(UIImage(systemName: newElement.isLike ? "star.fill" : "star"), for: .normal)
+//                        newElement.isLike.toggle()
+//                        cell.rightButton.setImage(UIImage(systemName: newElement.isLike ? "star.fill" : "star"), for: .normal)
+                        cellRightButtonTap.onNext(row)
+                        print(cellRightButtonTap)
                     })
                     .disposed(by: cell.disposeBag)
+                //
             }
             .disposed(by: disposeBag)
         //화면 전환 기능

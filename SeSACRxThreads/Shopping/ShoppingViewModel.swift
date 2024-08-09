@@ -33,6 +33,8 @@ class ShoppingViewModel {
         let select: ControlEvent<IndexPath>//tableView.rx.itemSelected
         //테이블뷰 클릭 시 들어오는 글자. 컬렉션뷰에 업데이트/테이블뷰에 업데이트해야함
         let recentText: Observable<String>
+        let cellLeftTap: PublishSubject<Int>//추가하면 완료,즐겨찾기 초기화되는 문제 해결
+        let rightTap: Observable<Int>//추가하면 완료,즐겨찾기 초기화되는 문제 해결
     }
     struct Output {
         let list: BehaviorSubject<[Data]>
@@ -43,6 +45,24 @@ class ShoppingViewModel {
     func transform(input: Input) -> Output {
         let recentList = BehaviorSubject(value: recentList)
         let list = BehaviorSubject(value: data)
+        //추가하면 완료,즐겨찾기 초기화되는 문제 해결
+        input.cellLeftTap
+            .bind { row in
+                var listValue = try! list.value()
+                listValue[row].isDone.toggle()
+                self.data[row].isDone.toggle()
+                list.onNext(listValue)
+            }
+            .disposed(by: disposeBag)
+        input.rightTap
+            .bind { row in
+                var listValue = try! list.value()
+                listValue[row].isLike.toggle()
+                self.data[row].isLike.toggle()
+                list.onNext(listValue)
+            }
+            .disposed(by: disposeBag)
+        //
         //tableView에 추가
         input.recentText
             .subscribe(with: self) { owner, value in
@@ -51,17 +71,7 @@ class ShoppingViewModel {
                 list.onNext(owner.data)//recentList이면 컬렉션뷰에 추가됨
             }
             .disposed(by: disposeBag)
-        
-//        //textFiled에서 tableview에 추가
-//        input.recentText
-//            .subscribe(with: self) { owner, value in
-//                print(value,"TF->TV")
-//                owner.data.append(Data(title: value,isDone: false, isLike: false))//recentList이면 컬렉션뷰에 추가됨
-//                list.onNext(owner.data)//recentList이면 컬렉션뷰에 추가됨
-//            }
-//            .disposed(by: disposeBag)
-        
-        //컬렉션뷰 셀을 선택했을때 테이블뷰에 할 일이 추가되도록
+
         input.enterTextField
             .withLatestFrom(input.text)
             .subscribe(with: self) { owner, value in
@@ -71,16 +81,7 @@ class ShoppingViewModel {
                 //input.text = ""
             }
             .disposed(by: disposeBag)
-        
-//        //컬렉션뷰에 추가 / 근데 안됨 테이블뷰에 중복으로 추가되고/컬렉션뷰에 왜 추가하지? 필요없음!!
-//        input.recentText
-//            .subscribe(with: self) { owner, value in
-//                print(value,"컬렉션뷰")
-//                owner.recentList.append(value)
-//                recentList.onNext(owner.recentList)
-//            }
-//            .disposed(by: disposeBag)
-        
+
         input.select
             .subscribe(with: self) { owner, _ in
             }

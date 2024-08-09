@@ -48,6 +48,7 @@
 		BF86A6A82C636FAB00813C36 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6A72C636FAB00813C36 /* MovieCollectionViewCell.swift */; };
 		BF86A6AA2C639A0F00813C36 /* BoxOfficeViewModel2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6A92C639A0F00813C36 /* BoxOfficeViewModel2.swift */; };
 		BF86A6AC2C63C44A00813C36 /* ShoppingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6AB2C63C44A00813C36 /* ShoppingCollectionViewCell.swift */; };
+		BFF42D862C65ECE10043D110 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF42D852C65ECE10043D110 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		BF86A6A72C636FAB00813C36 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		BF86A6A92C639A0F00813C36 /* BoxOfficeViewModel2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeViewModel2.swift; sourceTree = "<group>"; };
 		BF86A6AB2C63C44A00813C36 /* ShoppingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCollectionViewCell.swift; sourceTree = "<group>"; };
+		BFF42D852C65ECE10043D110 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +273,7 @@
 				BF86A6A92C639A0F00813C36 /* BoxOfficeViewModel2.swift */,
 				BF86A6A52C636F8100813C36 /* MovieTableViewCell.swift */,
 				BF86A6A72C636FAB00813C36 /* MovieCollectionViewCell.swift */,
+				BFF42D852C65ECE10043D110 /* NetworkManager.swift */,
 			);
 			path = BoxOffice;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				BF86A6AA2C639A0F00813C36 /* BoxOfficeViewModel2.swift in Sources */,
 				041280242AEF9BAB00972552 /* AppDelegate.swift in Sources */,
 				04F6DBFE2C5B0C0300667F4D /* SearchViewController.swift in Sources */,
+				BFF42D862C65ECE10043D110 /* NetworkManager.swift in Sources */,
 				BF86A6882C60EADA00813C36 /* BirthdayViewModel.swift in Sources */,
 				BF86A68C2C612F3E00813C36 /* SignUpViewModel.swift in Sources */,
 				BF86A6862C60E34400813C36 /* NicknameViewModel.swift in Sources */,
