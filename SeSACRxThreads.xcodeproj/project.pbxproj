@@ -34,6 +34,10 @@
 		04F6DBFE2C5B0C0300667F4D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F6DBFD2C5B0C0300667F4D /* SearchViewController.swift */; };
 		04F6DC002C5B0C2200667F4D /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F6DBFF2C5B0C2200667F4D /* SearchTableViewCell.swift */; };
 		04F6DC022C5B0D8200667F4D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F6DC012C5B0D8200667F4D /* DetailViewController.swift */; };
+		BF07E01D2C67099200BF3222 /* iTunesNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF07E01C2C67099200BF3222 /* iTunesNetworkManager.swift */; };
+		BF07E01F2C67109200BF3222 /* iTunesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF07E01E2C67109200BF3222 /* iTunesTableViewCell.swift */; };
+		BF19C8702C6720C700A59041 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BF19C86F2C6720C700A59041 /* Kingfisher */; };
+		BF19C8742C67460E00A59041 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF19C8732C67460E00A59041 /* DetailViewModel.swift */; };
 		BF86A6842C60CA7A00813C36 /* PhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6832C60CA7A00813C36 /* PhoneViewModel.swift */; };
 		BF86A6862C60E34400813C36 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6852C60E34400813C36 /* NicknameViewModel.swift */; };
 		BF86A6882C60EADA00813C36 /* BirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6872C60EADA00813C36 /* BirthdayViewModel.swift */; };
@@ -52,7 +56,6 @@
 		BFF42D882C65EE1B0043D110 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF42D872C65EE1A0043D110 /* Movie.swift */; };
 		BFF42D8B2C663FBC0043D110 /* iTunesSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF42D8A2C663FBC0043D110 /* iTunesSearchViewController.swift */; };
 		BFF42D8D2C6642780043D110 /* iTunesSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF42D8C2C6642780043D110 /* iTunesSearchViewModel.swift */; };
-		BFF42D912C664EA40043D110 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF42D902C664EA40043D110 /* NetworkManager.swift */; };
 		BFF42D932C664EE60043D110 /* iTunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF42D922C664EE60043D110 /* iTunes.swift */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +104,9 @@
 		04F6DBFD2C5B0C0300667F4D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		04F6DBFF2C5B0C2200667F4D /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		04F6DC012C5B0D8200667F4D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		BF07E01C2C67099200BF3222 /* iTunesNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesNetworkManager.swift; sourceTree = "<group>"; };
+		BF07E01E2C67109200BF3222 /* iTunesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesTableViewCell.swift; sourceTree = "<group>"; };
+		BF19C8732C67460E00A59041 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		BF86A6832C60CA7A00813C36 /* PhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewModel.swift; sourceTree = "<group>"; };
 		BF86A6852C60E34400813C36 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		BF86A6872C60EADA00813C36 /* BirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewModel.swift; sourceTree = "<group>"; };
@@ -119,7 +125,6 @@
 		BFF42D872C65EE1A0043D110 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		BFF42D8A2C663FBC0043D110 /* iTunesSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesSearchViewController.swift; sourceTree = "<group>"; };
 		BFF42D8C2C6642780043D110 /* iTunesSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesSearchViewModel.swift; sourceTree = "<group>"; };
-		BFF42D902C664EA40043D110 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		BFF42D922C664EE60043D110 /* iTunes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +137,7 @@
 				0412805D2AEFA09E00972552 /* RxSwift in Frameworks */,
 				0412805B2AEFA09E00972552 /* RxCocoa in Frameworks */,
 				039649BA2C5F29CE00799E4D /* Then in Frameworks */,
+				BF19C8702C6720C700A59041 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,8 +301,10 @@
 			children = (
 				BFF42D8A2C663FBC0043D110 /* iTunesSearchViewController.swift */,
 				BFF42D8C2C6642780043D110 /* iTunesSearchViewModel.swift */,
-				BFF42D902C664EA40043D110 /* NetworkManager.swift */,
 				BFF42D922C664EE60043D110 /* iTunes.swift */,
+				BF07E01C2C67099200BF3222 /* iTunesNetworkManager.swift */,
+				BF07E01E2C67109200BF3222 /* iTunesTableViewCell.swift */,
+				BF19C8732C67460E00A59041 /* DetailViewModel.swift */,
 			);
 			path = iTunes;
 			sourceTree = "<group>";
@@ -322,6 +330,7 @@
 				0412805C2AEFA09E00972552 /* RxSwift */,
 				0412805F2AEFA0AC00972552 /* SnapKit */,
 				039649B92C5F29CE00799E4D /* Then */,
+				BF19C86F2C6720C700A59041 /* Kingfisher */,
 			);
 			productName = SeSACRxThreads;
 			productReference = 041280202AEF9BAB00972552 /* SeSACRxThreads.app */;
@@ -399,6 +408,7 @@
 				041280592AEFA09D00972552 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				0412805E2AEFA0AC00972552 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				039F937F2C5E6A1A00181C6C /* XCRemoteSwiftPackageReference "Then" */,
+				BF07E0202C671CCF00BF3222 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 041280212AEF9BAB00972552 /* Products */;
 			projectDirPath = "";
@@ -444,6 +454,7 @@
 			files = (
 				BF86A6A42C636F6600813C36 /* BoxOfficeViewModel.swift in Sources */,
 				041280782AF1D14000972552 /* Resource.swift in Sources */,
+				BF07E01D2C67099200BF3222 /* iTunesNetworkManager.swift in Sources */,
 				0412806F2AEFAD2D00972552 /* BirthdayViewController.swift in Sources */,
 				041280652AEFA2F000972552 /* SignTextField.swift in Sources */,
 				BF86A6A62C636F8100813C36 /* MovieTableViewCell.swift in Sources */,
@@ -462,9 +473,9 @@
 				BFF42D862C65ECE10043D110 /* NetworkManager.swift in Sources */,
 				BFF42D882C65EE1B0043D110 /* Movie.swift in Sources */,
 				BF86A6882C60EADA00813C36 /* BirthdayViewModel.swift in Sources */,
-				BFF42D912C664EA40043D110 /* NetworkManager.swift in Sources */,
 				BFF42D8B2C663FBC0043D110 /* iTunesSearchViewController.swift in Sources */,
 				BF86A68C2C612F3E00813C36 /* SignUpViewModel.swift in Sources */,
+				BF19C8742C67460E00A59041 /* DetailViewModel.swift in Sources */,
 				BF86A6862C60E34400813C36 /* NicknameViewModel.swift in Sources */,
 				04F6DC002C5B0C2200667F4D /* SearchTableViewCell.swift in Sources */,
 				041280732AEFAD4B00972552 /* NicknameViewController.swift in Sources */,
@@ -478,6 +489,7 @@
 				BF86A6902C626FAC00813C36 /* ShoppingViewModel.swift in Sources */,
 				041280582AEFA05300972552 /* SignInViewModel.swift in Sources */,
 				BF86A6A82C636FAB00813C36 /* MovieCollectionViewCell.swift in Sources */,
+				BF07E01F2C67109200BF3222 /* iTunesTableViewCell.swift in Sources */,
 				BF86A68A2C612C8A00813C36 /* PasswordViewModel.swift in Sources */,
 				BF86A6A22C636F4900813C36 /* BoxOfficeViewController.swift in Sources */,
 			);
@@ -850,6 +862,14 @@
 				minimumVersion = 5.6.0;
 			};
 		};
+		BF07E0202C671CCF00BF3222 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -872,6 +892,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0412805E2AEFA0AC00972552 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		BF19C86F2C6720C700A59041 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF07E0202C671CCF00BF3222 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

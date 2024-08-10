@@ -10,7 +10,7 @@ import RxSwift
 
 enum APIError: Error {
     case invalidURL
-    case unkwnonResponse
+    case unknwonResponse
     case statusError
 }
 
@@ -23,12 +23,12 @@ final class NetworkManager {
         
         let result = Observable<Movie>.create { observer in
             guard let url = URL(string: url) else {
-                observer.onError(APIError.unkwnonResponse)
+                observer.onError(APIError.unknwonResponse)
                 return Disposables.create()
             }
             URLSession.shared.dataTask(with: url) { data, reponse, error in
                 if let error = error {
-                    observer.onError(APIError.unkwnonResponse)
+                    observer.onError(APIError.unknwonResponse)
                     return
                 }
                 guard let response = reponse as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
@@ -41,7 +41,7 @@ final class NetworkManager {
                     observer.onCompleted()//Observable lifeCycle에 의해 알아서 dispose되도록 만들 수 있음
                 } else {
                     print("응답은 왔으나 디코딩 실패")
-                    observer.onError(APIError.unkwnonResponse)
+                    observer.onError(APIError.unknwonResponse)
                 }
             }.resume()
             return Disposables.create()
