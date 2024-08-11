@@ -12,7 +12,7 @@ import RxCocoa
 import Kingfisher
 
 class iTunesSearchViewController: UIViewController {
-    let searchBar = UISearchBar()
+    let searchController = UISearchController(searchResultsController: nil)
     let tableView = UITableView()
     let viewModel = iTunesSearchViewModel()
     let disposeBag = DisposeBag()
@@ -25,13 +25,12 @@ class iTunesSearchViewController: UIViewController {
     }
     func bind() {
         let transmissionList = PublishSubject<String>()
-        let input = iTunesSearchViewModel.Input(searchButtonTap: searchBar.rx.searchButtonClicked, searchText: searchBar.rx.text.orEmpty, transmissionText: transmissionList)
+        let input = iTunesSearchViewModel.Input(searchButtonTap: searchController.searchBar.rx.searchButtonClicked, searchText: searchController.searchBar.rx.text.orEmpty, transmissionText: transmissionList)
         let output = viewModel.transform(input: input)
         
         output.iTunesList
             .bind(to: tableView.rx.items(cellIdentifier: iTunesTableViewCell.identifier, cellType: iTunesTableViewCell.self)) { (row, element, cell) in
                 cell.firstLabel.text = element.collectionName
-                //let url = URL(string: "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a0/46/c2/a046c209-7cc8-024c-d82b-3f198f043c97/8809492035840.jpg/30x30bb.jpg")
                 let url = URL(string: element.artworkUrl30)
                 cell.iconImageView.kf.setImage(with: url)
                 cell.downloadButton.setTitle(element.artistName, for: .normal)
@@ -44,24 +43,23 @@ class iTunesSearchViewController: UIViewController {
                 transmissionList.onNext(value)
                 let vc = DetailViewController()
                 vc.nameTitle = value
-                print(value,"hhuhuhuhuhu")
                 owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
     }
     func configureHierarcy() {
-        view.addSubview(searchBar)
+        view.addSubview(searchController.searchBar)
         view.addSubview(tableView)
+        navigationItem.searchController = searchController
         tableView.register(iTunesTableViewCell.self, forCellReuseIdentifier: iTunesTableViewCell.identifier)
         tableView.rowHeight = 100
     }
     func configureLayout() {
-        searchBar.snp.makeConstraints { make in
+        searchController.searchBar.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(44)
         }
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(searchBar.snp.bottom).offset(5)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(5)
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
@@ -69,8 +67,7 @@ class iTunesSearchViewController: UIViewController {
         view.backgroundColor = .white
         navigationItem.title = "검색"
         navigationController?.navigationBar.prefersLargeTitles = true
-        searchBar.placeholder = "게임, 앱, 스토리 등"
-        searchBar.backgroundImage = UIImage()
-        tableView.backgroundColor = .green
+        searchController.searchBar.placeholder = "게임, 앱, 스토리 등"
+        searchController.searchBar.backgroundImage = UIImage()
     }
 }

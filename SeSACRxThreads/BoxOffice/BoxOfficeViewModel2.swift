@@ -49,10 +49,13 @@ class BoxOfficeViewModel2 {
             .debug("체크2")
             .map({ return"\($0)" })//String으로 바꿔줌 => "20240808"
             .flatMap({ value in//위는 String 얘는 Observable<Observable<value>>임. 난 Observable<value>를 원함 => map -> flatMap => .subscribe 하면 한 번에 value가 나옴
-                NetworkManager.shared.callBoxOffice(date: value) })
+                NetworkManager.shared.callBoxOffice(date: value).catch { error in
+                    print(error.localizedDescription)
+                    return Observable.empty()
+                } })
             .debug("체크3")
             .subscribe(with: self, onNext: { owner, movie in
-                dump(movie.boxOfficeResult.dailyBoxOfficeList)
+                dump(movie .boxOfficeResult.dailyBoxOfficeList)
                 boxOfficeList.onNext(movie.boxOfficeResult.dailyBoxOfficeList)
             }, onError: { owner, error in
                 print(error)

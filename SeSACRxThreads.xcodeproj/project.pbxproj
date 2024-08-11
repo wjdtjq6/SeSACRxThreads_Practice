@@ -38,6 +38,11 @@
 		BF07E01F2C67109200BF3222 /* iTunesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF07E01E2C67109200BF3222 /* iTunesTableViewCell.swift */; };
 		BF19C8702C6720C700A59041 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BF19C86F2C6720C700A59041 /* Kingfisher */; };
 		BF19C8742C67460E00A59041 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF19C8732C67460E00A59041 /* DetailViewModel.swift */; };
+		BF19C8762C68852500A59041 /* iTunesTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF19C8752C68852500A59041 /* iTunesTabBar.swift */; };
+		BF19C8782C68863200A59041 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF19C8772C68863200A59041 /* TodayViewController.swift */; };
+		BF19C87A2C68863C00A59041 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF19C8792C68863C00A59041 /* GameViewController.swift */; };
+		BF19C87C2C68864300A59041 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF19C87B2C68864300A59041 /* AppViewController.swift */; };
+		BF19C87E2C68865100A59041 /* ArcadeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF19C87D2C68865100A59041 /* ArcadeViewController.swift */; };
 		BF86A6842C60CA7A00813C36 /* PhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6832C60CA7A00813C36 /* PhoneViewModel.swift */; };
 		BF86A6862C60E34400813C36 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6852C60E34400813C36 /* NicknameViewModel.swift */; };
 		BF86A6882C60EADA00813C36 /* BirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6872C60EADA00813C36 /* BirthdayViewModel.swift */; };
@@ -107,6 +112,11 @@
 		BF07E01C2C67099200BF3222 /* iTunesNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesNetworkManager.swift; sourceTree = "<group>"; };
 		BF07E01E2C67109200BF3222 /* iTunesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesTableViewCell.swift; sourceTree = "<group>"; };
 		BF19C8732C67460E00A59041 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		BF19C8752C68852500A59041 /* iTunesTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesTabBar.swift; sourceTree = "<group>"; };
+		BF19C8772C68863200A59041 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		BF19C8792C68863C00A59041 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		BF19C87B2C68864300A59041 /* AppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
+		BF19C87D2C68865100A59041 /* ArcadeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcadeViewController.swift; sourceTree = "<group>"; };
 		BF86A6832C60CA7A00813C36 /* PhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewModel.swift; sourceTree = "<group>"; };
 		BF86A6852C60E34400813C36 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		BF86A6872C60EADA00813C36 /* BirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewModel.swift; sourceTree = "<group>"; };
@@ -305,6 +315,11 @@
 				BF07E01C2C67099200BF3222 /* iTunesNetworkManager.swift */,
 				BF07E01E2C67109200BF3222 /* iTunesTableViewCell.swift */,
 				BF19C8732C67460E00A59041 /* DetailViewModel.swift */,
+				BF19C8752C68852500A59041 /* iTunesTabBar.swift */,
+				BF19C8772C68863200A59041 /* TodayViewController.swift */,
+				BF19C8792C68863C00A59041 /* GameViewController.swift */,
+				BF19C87B2C68864300A59041 /* AppViewController.swift */,
+				BF19C87D2C68865100A59041 /* ArcadeViewController.swift */,
 			);
 			path = iTunes;
 			sourceTree = "<group>";
@@ -453,12 +468,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF86A6A42C636F6600813C36 /* BoxOfficeViewModel.swift in Sources */,
+				BF19C8762C68852500A59041 /* iTunesTabBar.swift in Sources */,
 				041280782AF1D14000972552 /* Resource.swift in Sources */,
 				BF07E01D2C67099200BF3222 /* iTunesNetworkManager.swift in Sources */,
 				0412806F2AEFAD2D00972552 /* BirthdayViewController.swift in Sources */,
 				041280652AEFA2F000972552 /* SignTextField.swift in Sources */,
 				BF86A6A62C636F8100813C36 /* MovieTableViewCell.swift in Sources */,
 				0412806C2AEFABFE00972552 /* PasswordViewController.swift in Sources */,
+				BF19C8782C68863200A59041 /* TodayViewController.swift in Sources */,
 				041280562AEFA04800972552 /* SignInViewController.swift in Sources */,
 				041280282AEF9BAB00972552 /* ViewController.swift in Sources */,
 				039F937E2C5E680900181C6C /* ShoppingViewController.swift in Sources */,
@@ -467,6 +484,7 @@
 				BFF42D932C664EE60043D110 /* iTunes.swift in Sources */,
 				04F6DC022C5B0D8200667F4D /* DetailViewController.swift in Sources */,
 				BFF42D8D2C6642780043D110 /* iTunesSearchViewModel.swift in Sources */,
+				BF19C87E2C68865100A59041 /* ArcadeViewController.swift in Sources */,
 				BF86A6AA2C639A0F00813C36 /* BoxOfficeViewModel2.swift in Sources */,
 				041280242AEF9BAB00972552 /* AppDelegate.swift in Sources */,
 				04F6DBFE2C5B0C0300667F4D /* SearchViewController.swift in Sources */,
@@ -476,6 +494,7 @@
 				BFF42D8B2C663FBC0043D110 /* iTunesSearchViewController.swift in Sources */,
 				BF86A68C2C612F3E00813C36 /* SignUpViewModel.swift in Sources */,
 				BF19C8742C67460E00A59041 /* DetailViewModel.swift in Sources */,
+				BF19C87C2C68864300A59041 /* AppViewController.swift in Sources */,
 				BF86A6862C60E34400813C36 /* NicknameViewModel.swift in Sources */,
 				04F6DC002C5B0C2200667F4D /* SearchTableViewCell.swift in Sources */,
 				041280732AEFAD4B00972552 /* NicknameViewController.swift in Sources */,
@@ -487,6 +506,7 @@
 				041280712AEFAD3D00972552 /* PhoneViewController.swift in Sources */,
 				041280262AEF9BAB00972552 /* SceneDelegate.swift in Sources */,
 				BF86A6902C626FAC00813C36 /* ShoppingViewModel.swift in Sources */,
+				BF19C87A2C68863C00A59041 /* GameViewController.swift in Sources */,
 				041280582AEFA05300972552 /* SignInViewModel.swift in Sources */,
 				BF86A6A82C636FAB00813C36 /* MovieCollectionViewCell.swift in Sources */,
 				BF07E01F2C67109200BF3222 /* iTunesTableViewCell.swift in Sources */,

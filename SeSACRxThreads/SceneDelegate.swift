@@ -16,9 +16,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-        let rootViewController = UINavigationController(rootViewController: iTunesSearchViewController())
+        //let rootViewController = UINavigationController(rootViewController: iTunesTabBar())
        
-        window?.rootViewController = rootViewController
+        window?.rootViewController = iTunesTabBar()//rootViewController
         window?.makeKeyAndVisible()
 
     }

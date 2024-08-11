@@ -33,11 +33,15 @@ class iTunesSearchViewModel {
             .debug("체크1")
             .distinctUntilChanged()
             .flatMap({ value in
-                iTunesNetworkManager.shared.calliTunes(term: value)
+                iTunesNetworkManager.shared.calliTunes(term: value).catch { error in
+                    print(error.localizedDescription)
+                    return Observable.empty()
+                }
             })
             .debug("체크2")
             .subscribe(with: self, onNext: { owner, iTunes in
                 dump(iTunes.results)
+                print("아이튠즈.결과")
                 iTunesList.onNext(iTunes.results)
             }, onError: { owner, error in
                 print(error)
@@ -50,7 +54,7 @@ class iTunesSearchViewModel {
         
         input.searchText
             .subscribe(with: self) { owner, string in
-                print(string)
+                print(string,"글자")
             }
             .disposed(by: disposeBag)
         
