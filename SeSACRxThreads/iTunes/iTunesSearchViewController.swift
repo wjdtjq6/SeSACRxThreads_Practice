@@ -30,15 +30,15 @@ class iTunesSearchViewController: UIViewController {
         
         output.iTunesList
             .bind(to: tableView.rx.items(cellIdentifier: iTunesTableViewCell.identifier, cellType: iTunesTableViewCell.self)) { (row, element, cell) in
-                cell.firstLabel.text = element.collectionName
-                let url = URL(string: element.artworkUrl30)
+                cell.firstLabel.text = element.trackCensoredName
+                let url = URL(string: element.artworkUrl60)
                 cell.iconImageView.kf.setImage(with: url)
-                cell.downloadButton.setTitle(element.artistName, for: .normal)
+                cell.downloadButton.setTitle(element.sellerName, for: .normal)
             }
             .disposed(by: disposeBag)
         
         Observable.zip(tableView.rx.itemSelected, tableView.rx.modelSelected(Results.self))
-            .map { "\($0.1.collectionName)" }
+            .map { "\($0.1.trackCensoredName)" }
             .subscribe(with: self) { owner, value in
                 transmissionList.onNext(value)
                 let vc = DetailViewController()

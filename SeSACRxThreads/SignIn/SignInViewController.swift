@@ -19,6 +19,7 @@ class SignInViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     let viewModel = SignInViewModel()
+    let viewModel2 = SignInViewModel2()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,9 +28,30 @@ class SignInViewController: UIViewController {
         configureLayout()
         configure()
         
-        bind()
+        //bind()
+        bind2()
     }
-    
+    func bind2() {
+        let input = SignInViewModel2.Input(tap: signInButton.rx.tap)
+        let output = viewModel2.transform(input: input)
+        
+        output.text
+            .map { joke in
+                return joke.joke
+            }
+            .drive(with: self) { owner, value in
+                owner.emailTextField.text = value
+            }
+            .disposed(by: disposeBag)
+        //Driver >> drive
+        //stream 공유(share), main thread 동작 보장, 오류 허용x
+        output.text//asDriver(onErrorJustReturn: "")
+            .map { joke in
+                return "농담: \(joke.id)"
+            }
+            .drive(navigationItem.rx.title)
+            .disposed(by: disposeBag)
+    }
     func bind() {
         let input = SignInViewModel.Input(textEmail: emailTextField.rx.text, textPW: passwordTextField.rx.text, tap: signInButton.rx.tap)
         let output = viewModel.transform(input: input)

@@ -43,6 +43,9 @@
 		BF19C87A2C68863C00A59041 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF19C8792C68863C00A59041 /* GameViewController.swift */; };
 		BF19C87C2C68864300A59041 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF19C87B2C68864300A59041 /* AppViewController.swift */; };
 		BF19C87E2C68865100A59041 /* ArcadeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF19C87D2C68865100A59041 /* ArcadeViewController.swift */; };
+		BF19C8852C69F7B400A59041 /* Joke.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF19C8842C69F7B400A59041 /* Joke.swift */; };
+		BF19C8872C69F7F700A59041 /* SignInViewModel2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF19C8862C69F7F700A59041 /* SignInViewModel2.swift */; };
+		BF19C88A2C6A01C800A59041 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BF19C8892C6A01C800A59041 /* Alamofire */; };
 		BF86A6842C60CA7A00813C36 /* PhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6832C60CA7A00813C36 /* PhoneViewModel.swift */; };
 		BF86A6862C60E34400813C36 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6852C60E34400813C36 /* NicknameViewModel.swift */; };
 		BF86A6882C60EADA00813C36 /* BirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF86A6872C60EADA00813C36 /* BirthdayViewModel.swift */; };
@@ -117,6 +120,8 @@
 		BF19C8792C68863C00A59041 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		BF19C87B2C68864300A59041 /* AppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
 		BF19C87D2C68865100A59041 /* ArcadeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcadeViewController.swift; sourceTree = "<group>"; };
+		BF19C8842C69F7B400A59041 /* Joke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joke.swift; sourceTree = "<group>"; };
+		BF19C8862C69F7F700A59041 /* SignInViewModel2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel2.swift; sourceTree = "<group>"; };
 		BF86A6832C60CA7A00813C36 /* PhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewModel.swift; sourceTree = "<group>"; };
 		BF86A6852C60E34400813C36 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		BF86A6872C60EADA00813C36 /* BirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewModel.swift; sourceTree = "<group>"; };
@@ -146,6 +151,7 @@
 				041280602AEFA0AC00972552 /* SnapKit in Frameworks */,
 				0412805D2AEFA09E00972552 /* RxSwift in Frameworks */,
 				0412805B2AEFA09E00972552 /* RxCocoa in Frameworks */,
+				BF19C88A2C6A01C800A59041 /* Alamofire in Frameworks */,
 				039649BA2C5F29CE00799E4D /* Then in Frameworks */,
 				BF19C8702C6720C700A59041 /* Kingfisher in Frameworks */,
 			);
@@ -254,6 +260,8 @@
 			children = (
 				041280552AEFA04800972552 /* SignInViewController.swift */,
 				041280572AEFA05300972552 /* SignInViewModel.swift */,
+				BF19C8842C69F7B400A59041 /* Joke.swift */,
+				BF19C8862C69F7F700A59041 /* SignInViewModel2.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -346,6 +354,7 @@
 				0412805F2AEFA0AC00972552 /* SnapKit */,
 				039649B92C5F29CE00799E4D /* Then */,
 				BF19C86F2C6720C700A59041 /* Kingfisher */,
+				BF19C8892C6A01C800A59041 /* Alamofire */,
 			);
 			productName = SeSACRxThreads;
 			productReference = 041280202AEF9BAB00972552 /* SeSACRxThreads.app */;
@@ -424,6 +433,7 @@
 				0412805E2AEFA0AC00972552 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				039F937F2C5E6A1A00181C6C /* XCRemoteSwiftPackageReference "Then" */,
 				BF07E0202C671CCF00BF3222 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				BF19C8882C6A01C800A59041 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 041280212AEF9BAB00972552 /* Products */;
 			projectDirPath = "";
@@ -477,6 +487,7 @@
 				0412806C2AEFABFE00972552 /* PasswordViewController.swift in Sources */,
 				BF19C8782C68863200A59041 /* TodayViewController.swift in Sources */,
 				041280562AEFA04800972552 /* SignInViewController.swift in Sources */,
+				BF19C8852C69F7B400A59041 /* Joke.swift in Sources */,
 				041280282AEF9BAB00972552 /* ViewController.swift in Sources */,
 				039F937E2C5E680900181C6C /* ShoppingViewController.swift in Sources */,
 				BF86A6842C60CA7A00813C36 /* PhoneViewModel.swift in Sources */,
@@ -493,6 +504,7 @@
 				BF86A6882C60EADA00813C36 /* BirthdayViewModel.swift in Sources */,
 				BFF42D8B2C663FBC0043D110 /* iTunesSearchViewController.swift in Sources */,
 				BF86A68C2C612F3E00813C36 /* SignUpViewModel.swift in Sources */,
+				BF19C8872C69F7F700A59041 /* SignInViewModel2.swift in Sources */,
 				BF19C8742C67460E00A59041 /* DetailViewModel.swift in Sources */,
 				BF19C87C2C68864300A59041 /* AppViewController.swift in Sources */,
 				BF86A6862C60E34400813C36 /* NicknameViewModel.swift in Sources */,
@@ -890,6 +902,14 @@
 				minimumVersion = 7.12.0;
 			};
 		};
+		BF19C8882C6A01C800A59041 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -917,6 +937,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BF07E0202C671CCF00BF3222 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		BF19C8892C6A01C800A59041 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF19C8882C6A01C800A59041 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class iTunesSearchViewModel {
+class iTunesSearchViewModel: BaseViewModel {
     let disposeBag = DisposeBag()
     
     private var list = iTunes.init(resultCount: 0, results: [])
@@ -27,15 +27,21 @@ class iTunesSearchViewModel {
     func transform(input: Input) -> Output {
         let iTunesList = PublishSubject<[Results]>()
         let transmissionList = BehaviorSubject(value: transmissionList)
+        let noResult = [Results(trackCensoredName: "소지섭", sellerName: "받기", artworkUrl60: "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/75/e7/3e/75e73e6c-859a-d090-2896-4659e16b72cf/AppIcon-0-0-1x_U007emarketing-0-0-0-10-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/60x60bb.jpg")]
+
         input.searchButtonTap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(input.searchText)
             .debug("체크1")
             .distinctUntilChanged()
             .flatMap({ value in
-                iTunesNetworkManager.shared.calliTunes(term: value).catch { error in
+//                iTunesNetworkManager.shared.calliTunes(term: value).catch { error in
+//                    print(error.localizedDescription)
+//                    return Observable.empty()
+//                }
+                iTunesNetworkManager.shared.fetchITunesSingle(term: value).catch { error in
                     print(error.localizedDescription)
-                    return Observable.empty()
+                    return Single.just(iTunes(resultCount: 1, results: noResult))
                 }
             })
             .debug("체크2")

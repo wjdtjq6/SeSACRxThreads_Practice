@@ -33,7 +33,7 @@ class iTunesTabBar: UITabBarController {
         let navArcade = UINavigationController(rootViewController: arcadeVC)
         let navDetail = UINavigationController(rootViewController: detailVC)
         
-        setViewControllers([navToday,navGame,navApp,navArcade,navDetail,BoxOfficeViewController()], animated: true)
+        setViewControllers([navToday,navGame,navApp,navArcade,navDetail], animated: true)
 
     }
 }

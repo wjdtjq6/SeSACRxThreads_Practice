@@ -12,7 +12,7 @@ struct iTunes: Decodable {
     let results: [Results]
 }
 struct Results: Decodable {
-    let artistName: String
-    let collectionName: String
-    let artworkUrl30: String
+    let trackCensoredName: String
+    let sellerName: String
+    let artworkUrl60: String
 }

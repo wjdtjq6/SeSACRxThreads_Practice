@@ -7,6 +7,8 @@
 
 import Foundation
 import RxSwift
+import Alamofire
+
 enum iTunesAPIError: Error {
     case invalidURL
     case unknwonResponse
@@ -16,8 +18,41 @@ class iTunesNetworkManager {
     static let shared = iTunesNetworkManager()
     private init() {}
     
+    func fetchITunes(term: String) -> Observable<iTunes> {
+        let iTunesURL = "http://itunes.apple.com/search?term=\(term)&media=software"
+        return Observable.create { observer -> Disposable in
+            AF.request(iTunesURL)
+                .validate(statusCode: 200...299)
+                .responseDecodable(of: iTunes.self) { response in
+                    switch response.result {
+                    case .success(let success):
+                        observer.onNext(success)
+                        observer.onCompleted()//구독 중첩 해결
+                    case .failure(let error):
+                        observer.onError(error)
+                    }
+                }
+            return Disposables.create()
+        }.debug("iTunes API 통신")
+    }
+    func fetchITunesSingle(term: String) -> Single<iTunes> {
+        let iTunesURL = "http://itunes.apple.com/search?term=\(term)&media=software"
+        return Single.create { observer in
+            AF.request(iTunesURL)
+                .validate(statusCode: 200...299)
+                .responseDecodable(of: iTunes.self) { response in
+                    switch response.result {
+                    case .success(let success):
+                        observer(.success(success))
+                    case .failure(let error):
+                        observer(.failure(error))
+                    }
+                }
+            return Disposables.create()
+        }.debug("iTunes API 통신")
+    }
     func calliTunes(term: String) -> Observable<iTunes> {
-        let url = "http://itunes.apple.com/search?term=\(term)"
+        let url = "http://itunes.apple.com/search?term=\(term)&media=software"
         
         let result = Observable<iTunes>.create { observer in
             guard let url = URL(string: url) else {
